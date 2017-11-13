@@ -15,4 +15,7 @@ class Url {
         $error = self::$_folder.DS."error.php";
         return is_file($page) ? $page: $error;
     }
+    public static function getAll(){
+        
+    }
 }
