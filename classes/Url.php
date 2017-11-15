@@ -16,6 +16,12 @@ class Url {
         return is_file($page) ? $page: $error;
     }
     public static function getAll(){
-        
+        if(!empty($_GET)){
+            foreach ($_GET as $key=>$value){
+                if(!empty($value)){
+                    self::$_params[$key] = $value;
+                }
+            }
+        }
     }
 }
