@@ -38,5 +38,18 @@ class Helper {
                 break;
         }
     }
+    public static function getImgSize($imgPath,$case){
+        //0=> width, 1=> height,2=>type,3=>attribute
+        $size = getimagesize($imgPath);
+        return $size[$case];
+    }
+    public static function shortenString($string,$len = 150){
+        if(strlen($string)>$len){
+            $string = trim(substr($string,0,$len));
+            $string = substr($string,0,  strrpos($string," "))."&hellip";
+        }else{
+            $string .= "&hellip";
+        }
+    }
 
 }
