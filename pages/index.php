@@ -1,3 +1,6 @@
-<?php require_once '_header.php'; ?>
+<?php
+require_once '_header.php';
+echo "<h1>index</h1>";
+require_once '_footer.php';
 
-<?php require_once '_footer.php'; ?>
+

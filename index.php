@@ -1,5 +1,5 @@
 <?php
-require_once ("inc/autoload.php"); 
-$core = new Core();
-$core->run();
+include_once 'inc/autoload.php';
+$coreObj = new Core();
+$coreObj->run();
 ?>

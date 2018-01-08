@@ -1,25 +1,24 @@
 <?php
+
 class Catalogue extends Application{
-    private $_tblCategories = "categories";
-    private $_tblProducts = "products";
-    private static $_imagePath = "media/catalogue/";
-    private static $_currency = "&#8377;";
-    public static function getCurrency(){
-        return self::$_currency;
-    }
-    public static function getImgPath(){
-        return self::$_imagePath;
-    }
+    private $_categories = "categories";
+    private $_products = "products";
+    public $_path = "media/catalogue/";
+    public static $_currency = "&#8377;";
     public function getCategories(){
-        $sql = "select * from $this->_tblCategories order by name asc";
-        return $this->_db->fetchAll($sql); 
+        $sql = "select * from {$this->_categories} order by name ";
+        return $this->db->fetchAll($sql);
     }
-    public function getCategory($id){
-        $sql = "select * from $this->_tblCategories where id = ".$this->_db->escape($id);
-        return $this->_db->fetchOne($sql); 
+    
+    public function getCategory($cat_id){
+        $sql = "select * from {$this->_categories} where id = ".
+                $this->db->escape($cat_id)." ";
+        return $this->db->fetchOne($sql);
     }
-    public function getProducts($catId){
-        $sql = "select * from $this->_tblProducts where category = ".$this->_db->escape($catId);
-        return $this->_db->fetchAll($sql); 
+    public function getProducts($cat_id){
+        $sql = "select * from {$this->_products} where category = ".
+                $this->db->escape($cat_id)
+                ." order by date desc";
+        return $this->db->fetchAll($sql);
     }
 }

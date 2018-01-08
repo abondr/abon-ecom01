@@ -11,16 +11,19 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 $sql = "";
-for($i=1;$i<1000;$i++){
+for($i=1;$i<=999;$i++){
+$strI = sprintf('%03d', $i);
+$price = $i > 500 ? $i : $i*100;
+$cat = $i % 3 +1;
 $sql .= "INSERT INTO products (name, description, price,date,category,image)
-VALUES (\"product $i\",\"product $i\",".(($i%3+1)*100).",\"2017-11-25 07:00:00\",".($i%3+1).",\"flower0".($i%3+1).".jpeg\");";
+VALUES ('product{$strI}', 'Basic Description{$strI}', $price,'2017-01-01',{$cat},'image{$cat}.jpg'); ";
 }
-
+//echo $sql;
 if ($conn->multi_query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "New records created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-echo $sql;
+
 $conn->close();
 ?> 
